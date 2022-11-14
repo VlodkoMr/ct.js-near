@@ -1,0 +1,54 @@
+{
+  "main": {
+    "name": "NEAR web3 Connector",
+    "tagline": "Web3 NEAR wallet connector",
+    "version": "0.0.1",
+    "authors": [
+      {
+        "name": "Vlodkow"
+      }
+    ],
+    "categories": [
+      "utilities"
+    ]
+  },
+  "fields": [
+    {
+      "name": "Contract Settings",
+      "type": "h2"
+    },
+    {
+      "name": "NEAR Network",
+      "key": "network",
+      "type": "select",
+      "default": "testnet",
+      "options": [
+        {
+          "value": "testnet",
+          "name": "Testnet"
+        },
+        {
+          "value": "mainnet",
+          "name": "Mainnet"
+        }
+      ]
+    },
+    {
+      "name": "Contract Address*",
+      "key": "contractAddress",
+      "type": "text"
+    },
+    {
+      "name": "Contract View methods (js array)*",
+      "key": "contractView",
+      "default": "[]",
+      "type": "code"
+    },
+    {
+      "name": "Contract Change methods (js array)*",
+      "key": "contractChange",
+      "default": "[]",
+      "type": "code"
+    }
+  ]
+}
