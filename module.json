@@ -34,19 +34,36 @@
       ]
     },
     {
-      "name": "Contract Address*",
-      "key": "contractAddress",
+      "name": "Primary Contract address*",
+      "key": "primaryAddress",
       "type": "text"
     },
     {
-      "name": "Contract View methods (js array)*",
-      "key": "contractView",
+      "name": "Primary Contract view methods (array)*",
+      "key": "primaryView",
       "default": "[]",
       "type": "code"
     },
     {
-      "name": "Contract Change methods (js array)*",
-      "key": "contractChange",
+      "name": "Primary Contract change methods (array)*",
+      "key": "primaryChange",
+      "default": "[]",
+      "type": "code"
+    },
+    {
+      "name": "Secondary Contract address",
+      "key": "secondaryAddress",
+      "type": "text"
+    },
+    {
+      "name": "Secondary Contract view methods (array)",
+      "key": "secondaryView",
+      "default": "[]",
+      "type": "code"
+    },
+    {
+      "name": "Secondary Contract change methods (array)",
+      "key": "secondaryChange",
       "default": "[]",
       "type": "code"
     }

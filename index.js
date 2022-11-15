@@ -1,11 +1,13 @@
 // Init catmod
 ct.near = {
-  contractAddress: "/*%contractAddress%*/",
+  primaryAddress: "/*%primaryAddress%*/",
+  secondaryAddress: "/*%secondaryAddress%*/",
   isConnected: false,
   userAddress: "",
-  contract: {},
+  primaryContract: {},
+  secondaryContract: {},
   connect: () => {
-    window.walletConnection.requestSignIn("/*%contractAddress%*/");
+    window.walletConnection.requestSignIn("/*%primaryAddress%*/");
   },
   disconnect: () => {
     window.walletConnection.signOut();
@@ -27,7 +29,7 @@ function getConfig(env) {
       return {
         networkId: 'mainnet',
         nodeUrl: 'https://rpc.mainnet.near.org',
-        contractName: ct.near.contractAddress,
+        contractName: ct.near.primaryAddress,
         walletUrl: 'https://wallet.near.org',
         helperUrl: 'https://helper.mainnet.near.org',
         explorerUrl: 'https://explorer.mainnet.near.org',
@@ -38,7 +40,7 @@ function getConfig(env) {
       return {
         networkId: 'testnet',
         nodeUrl: 'https://rpc.testnet.near.org',
-        contractName: ct.near.contractAddress,
+        contractName: ct.near.primaryAddress,
         walletUrl: 'https://wallet.testnet.near.org',
         helperUrl: 'https://helper.testnet.near.org',
         explorerUrl: 'https://explorer.testnet.near.org',
@@ -59,14 +61,25 @@ const initModule = async () => {
   window.walletConnection = new window.nearApi.WalletConnection(window.near);
 
   // Initialize a Contract Object (to interact with the contract)
-  ct.near.contract = await new window.nearApi.Contract(
+  ct.near.primaryContract = await new window.nearApi.Contract(
     window.walletConnection.account(),
-    ct.near.contractAddress,
+    ct.near.primaryAddress,
     {
-      viewMethods: [/*%contractView%*/][0],
-      changeMethods: [/*%contractChange%*/][0],
+      viewMethods: [/*%primaryView%*/][0],
+      changeMethods: [/*%primaryChange%*/][0],
     }
   )
+
+  if ([/*%secondaryAddress%*/][0]) {
+    ct.near.secondaryContract = await new window.nearApi.Contract(
+      window.walletConnection.account(),
+      ct.near.secondaryAddress,
+      {
+        viewMethods: [/*%secondaryView%*/][0],
+        changeMethods: [/*%secondaryChange%*/][0],
+      }
+    )
+  }
 }
 
 window.addEventListener("load", function () {
