@@ -7,6 +7,9 @@ Module allow ct.js connect NEAR Blockchain to sign transactions and interact wit
 1. Import catmod into ct.js and enable it to start usage.
 2. Open catmod settings and fill all you contract details: Network, Contract Address and method names.
 
+We support 2 smart-contracts: primary (required) and secondary (optional).
+To start using each smart-contract - provide contract address, view and call method manes as js array of strings).
+
 ## Variables
 
 #### Check the user's metamask connection (boolean):
@@ -122,12 +125,15 @@ this.accountLabel.depth = 1000;
 ```
 const data = await ct.near.primaryContract.read_data_method();
 ```
+
 NOTE: _read_data_method_ should exist in your smart-contract and listed in catmod settings.
 
 ### Write data to smart-contract (call primary contract):
+
 ```
 await ct.near.primaryContract.add_user_scores({
     param_id: "test data" 
 });
 ```
+
 NOTE: _call_data_method_ should exist in your smart-contract and listed in catmod settings.
