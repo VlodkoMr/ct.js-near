@@ -23,14 +23,30 @@ ct.near.userAddress
 
 #### Get your contract Address (from catmod settings):
 
+Primary contract address:
+
 ``` 
-ct.near.contractAddress
+ct.near.primaryAddress
 ```
 
-#### Get access to all public contract methods (using Contract ABI from catmod settings):
+Secondary contract address:
 
 ``` 
-ct.near.contract
+ct.near.secondaryAddress
+``` 
+
+#### Get access to all contract methods (using method list from catmod settings):
+
+Primary contract:
+
+``` 
+ct.near.primaryContract
+```
+
+Secondary contract:
+
+```
+ct.near.secondaryContract
 ```
 
 ------
@@ -53,10 +69,10 @@ Add disconnect action to your button template (On Step):
 ct.near.disconnect();
 ```
 
-#### Call your custom contract methods:
+#### Call your custom contract method (example with primary contract):
 
 ``` 
-ct.near.contract.call_method_name(params);
+ct.near.primaryContract.call_method_name(params);
 ```
 
 ------
@@ -100,3 +116,18 @@ this.accountLabel.x = 30;
 this.accountLabel.y = 30;
 this.accountLabel.depth = 1000;
 ```
+
+### Read data from NEAR Blockchain (view from primary contract):
+
+```
+const data = await ct.near.primaryContract.read_data_method();
+```
+NOTE: _read_data_method_ should exist in your smart-contract and listed in catmod settings.
+
+### Write data to smart-contract (call primary contract):
+```
+await ct.near.primaryContract.add_user_scores({
+    param_id: "test data" 
+});
+```
+NOTE: _call_data_method_ should exist in your smart-contract and listed in catmod settings.
